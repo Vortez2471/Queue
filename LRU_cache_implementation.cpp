@@ -3,7 +3,7 @@
 #include<unordered_map>
 #include<bits/stdc++.h>
 using namespace std;
-queue<int>q,q2;
+queue<int>q;
 unordered_map<int,int>ua;
 
 void lru_cache(unsigned int n,unsigned int k)
@@ -14,7 +14,7 @@ void lru_cache(unsigned int n,unsigned int k)
 		cin>>t;
 		if(q.size()<=n)
 		{
-			if(ua.find(t)==ua.end()||ua3[t]==0)
+			if(ua.find(t)==ua.end()||ua[t]==0)
 			{
 				if(q.size()==n)
 				{
@@ -27,6 +27,7 @@ void lru_cache(unsigned int n,unsigned int k)
 			}
 			else if(ua[t]==1)
 		    {
+		    	queue<int>q2;
 				while(!q.empty())
 				{
 					if(q.front()!=t)
@@ -43,7 +44,6 @@ void lru_cache(unsigned int n,unsigned int k)
 				q=q2;
 		    }
 		}
-		q2=q;
 	}
 }
 
@@ -55,7 +55,7 @@ int main()
 	cout<<"Enter the number of tasks"<<endl;
 	cin>>k;
 	lru_cache(n,k);
-	for(int i=1;i<=n;i++)
+	while(!q.empty())
 	{
 		cout<<q.front()<<" ";
 		q.pop();
